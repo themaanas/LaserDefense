@@ -21,6 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 //		LaserGame gameLasah = new LaserGame("hi");
 //	    gameLasah.startGame();
+		//hi jon
 		Rectangle rectangle = new Rectangle(100,100,Color.RED);
         Pane root = FXMLLoader.load(getClass().getResource("/laserDefense.fxml"));
         Pane newPane = new Pane(root, rectangle);
