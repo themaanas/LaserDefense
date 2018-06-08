@@ -1,55 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="484.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="474.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="485.0" prefWidth="817.0" style="-fx-background-color: #051626#051626;" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="565.0" prefWidth="861.0" style="-fx-background-color: #051626#051626;" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="490.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="484.0" fitWidth="861.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@636460990.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="113.0" fitWidth="72.0" layoutX="7.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@laserIcon.png" />
-               </image>
-            </ImageView>
-            <Pane layoutX="683.0" layoutY="43.0" prefHeight="67.0" prefWidth="177.0">
-               <children>
-                  <ImageView fitHeight="34.0" fitWidth="162.0" layoutX="16.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuBack.png" />
-                     </image>
-                  </ImageView>
-                  <Button contentDisplay="CENTER" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="141.0" style="-fx-background-color: none;" text="BEAM LASER" textFill="WHITE">
-                     <font>
-                        <Font name="AR DESTINE" size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <Pane layoutX="679.0" layoutY="120.0" prefHeight="67.0" prefWidth="176.0">
-               <children>
-                  <ImageView fitHeight="34.0" fitWidth="162.0" layoutX="20.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@menuBack.png" />
-                     </image>
-                  </ImageView>
-                  <Button contentDisplay="CENTER" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: none;" text="BURST LASER" textFill="WHITE">
-                     <font>
-                        <Font name="AR DESTINE" size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
          </children>
     </AnchorPane>
   </children>
