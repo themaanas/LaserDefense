@@ -1,6 +1,6 @@
 package application;
 	
-
+	
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.view.EntityView;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.time.TimerAction;
 
@@ -22,6 +23,7 @@ import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -39,9 +41,32 @@ import javafx.stage.Stage;
 
 public class Main extends GameApplication {
 	private List<Entity> enemyList;
-	private TimerAction timerAction;
-	private List<Point2D> path;
-	
+	private TimerAction timerAction;	
+	UserAction hitBall = new UserAction("Hit") {
+	    @Override
+	    protected void onActionBegin() {
+	        // action just started (key has just been pressed), play swinging animation
+	    	
+	    }
+
+	    @Override
+	    protected void onAction() {
+	        // action continues (key is held), increase swing power
+	    	
+	    }
+
+	    @Override
+	    protected void onActionEnd() {
+	        // action finished (key is released), play hitting animation based on swing power
+	    	Laser.lasah(enemyList, getGameWorld(), getInput().getMousePositionWorld());
+	    }
+	};
+	@Override
+	protected void initInput() {
+	    Input input = getInput();
+
+	    input.addAction(hitBall, MouseButton.PRIMARY);
+	}
 	//Executes at the start of the game
 	protected void initGame() {
 		GameWorld world = getGameWorld();
@@ -55,52 +80,7 @@ public class Main extends GameApplication {
 		
 		//Spawn enemies
 		enemyList = new ArrayList<Entity>();
-		EnemyFactory.spawn(0, world, enemyList);
-		
-		//Create the path, this will change once Sheek makes the Path class
-		path = new ArrayList<Point2D>();
-		path.add(new Point2D(200, 318));
-		path.add(new Point2D(200, 134));
-		path.add(new Point2D(445, 134));
-		path.add(new Point2D(445, 559));
-		path.add(new Point2D(687, 559));
-		path.add(new Point2D(687, 318));
-		path.add(new Point2D(985, 318));
-	    Point2D newPoint = new Point2D(300, 500);
-	    
-	    //Enemy timer, controls all enemies
-	    timerAction = getMasterTimer().runAtInterval(() -> {
-	    	
-	    	for (Entity i:enemyList) {
-	    		
-	    		//Retrieves each enemy
-	    		Enemy newEnemy = (Enemy) i;
-	    		
-	    		Point2D currentPos = newEnemy.getPosition();
-	    		Point2D destination = path.get(newEnemy.getNum());
-	    		
-	    		if (currentPos.equals(destination)) {
-	    			
-	    			//Increment to the next position
-	    			newEnemy.increment();
-	    			if (newEnemy.getNum() == path.size()) {
-	    				i.removeFromWorld();
-	    				enemyList.remove(i);
-	    				break;
-	    			}
-	    			
-	    		} else if (currentPos.getX()-destination.getX() < 0) {
-	    			newEnemy.setRotation(0);
-	    		} else if (currentPos.getY()-destination.getY() < 0) {
-	    			newEnemy.setRotation(90);
-	    		} else if (currentPos.getY()-destination.getY() > 0) {
-	    			newEnemy.setRotation(270);
-	    		}
-	    		//Move towards destination
-		    	i.translateTowards(path.get(newEnemy.getNum()), 1);
-	    	}
-	    	
-	    }, Duration.millis(0.5));
+		EnemyFactory.spawn(0, world, enemyList, 10, 50, 4, 0);
 	}
 
 	@Override
@@ -110,5 +90,19 @@ public class Main extends GameApplication {
 	    settings.setHeight(719);
 	    settings.setTitle("LASER DEFENSE");
 	    settings.setVersion("0.1");
+	}
+	
+	@Override
+	protected void initPhysics() {
+	    getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.ENEMY, EntityType.LASER) {
+
+	        // order of types is the same as passed into the constructor
+	        protected void onCollisionBegin(Entity enemy, Entity laser) {
+//	        	 getGameScene().getViewport().shake(8);
+	            laser.removeFromWorld();
+	            enemy.removeFromWorld();
+	            enemyList.remove(enemy);
+	        }
+	    });
 	}
 }

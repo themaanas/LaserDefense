@@ -1,0 +1,112 @@
+19:18:53.111 [JavaFX Application Thread] DEBUG GameApplication      - Logger initialized
+19:18:53.123 [JavaFX Application Thread] DEBUG MainWindow           - Creating a JavaFX scene
+19:18:53.123 [JavaFX Application Thread] DEBUG MainWindow           - Target size > screen size
+19:18:53.275 [JavaFX Application Thread] DEBUG MainWindow           - Target settings size: 1307.0 x 719.0
+19:18:53.275 [JavaFX Application Thread] DEBUG MainWindow           - Scaled scene size:    1255.0 x 704.0
+19:18:53.275 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (0.9602142310635042, 0.9791376912378303)
+19:18:53.281 [JavaFX Application Thread] DEBUG GameApplication      - Starting FXGL
+19:18:53.292 [JavaFX Application Thread] INFO  FXGL                 - FXGL-0.5.2 on DESKTOP
+19:18:53.293 [JavaFX Application Thread] INFO  FXGL                 - Source code and latest versions at: https://github.com/AlmasB/FXGL
+19:18:53.293 [JavaFX Application Thread] INFO  FXGL                 -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+19:18:53.304 [JavaFX Application Thread] DEBUG FS                   - Loaded DesktopFSService
+19:18:53.304 [JavaFX Application Thread] DEBUG FXGL                 - Loading FXGL system data
+19:18:53.327 [JavaFX Application Thread] DEBUG DesktopFSService     - Reading from: system/fxgl.bundle
+19:18:53.340 [JavaFX Application Thread] DEBUG Bundle               - Logging bundle: FXGL
+19:18:53.341 [JavaFX Application Thread] DEBUG Bundle               - FXGL.offline.timer.version.check=2018-06-08T17:04:18.376
+19:18:53.380 [JavaFX Application Thread] DEBUG GameApplication      - FXGL started
+19:18:53.380 [JavaFX Application Thread] DEBUG GameApplication      - Logging game settings
+Title: LASER DEFENSE
+Version: 0.1
+Width: 1307
+Height: 719
+Fullscreen: false
+Intro: false
+Menus: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.almasb.fxgl.scene.SceneFactory
+Dialog Factory: class com.almasb.fxgl.ui.FXGLDialogFactory
+UI Factory: class com.almasb.fxgl.ui.FXGLUIFactory
+Notification Service: class com.almasb.fxgl.gameplay.notification.XboxNotificationView
+Exception Handler: class com.almasb.fxgl.app.FXGLExceptionHandler
+19:18:53.381 [JavaFX Application Thread] DEBUG GameApplication      - Configuring GameApplication
+19:18:53.381 [JavaFX Application Thread] DEBUG GameApplication      - Initializing state machine and application states
+19:18:53.391 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+19:18:53.426 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+19:18:54.043 [JavaFX Application Thread] DEBUG FXGLAssets           - Loading FXGLAssets
+19:18:54.100 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/fonts/VarelaRound-Regular.ttf
+19:18:54.139 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/fonts/lucida_console.ttf
+19:18:54.146 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/css/fxgl_dark.css
+19:18:54.188 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+19:18:54.227 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+19:18:54.261 [JavaFX Application Thread] DEBUG GameScene            - Game scene initialized: 1307x719
+19:18:54.263 [JavaFX Application Thread] DEBUG GameWorld            - Game world initialized
+19:18:54.335 [JavaFX Application Thread] DEBUG PhysicsWorld         - Physics world initialized: appHeight=719, physics.ppm=50.0
+19:18:54.366 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Pause - Esc
+19:18:54.412 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+19:18:54.490 [JavaFX Application Thread] DEBUG AppStateMachine      - StartupState -> StartupState
+19:18:54.495 [JavaFX Application Thread] INFO  GameApplication      - Game configuration took:  1.114 sec
+19:18:54.498 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/textures/fxgl_icon.png
+19:18:54.520 [JavaFX Application Thread] DEBUG MainWindow           - Opening main window
+19:18:54.801 [JavaFX Application Thread] DEBUG MainWindow           - Window border size: (0.0, 22.0)
+19:18:54.802 [JavaFX Application Thread] DEBUG MainWindow           - Scaled size: 1255.0 x 704.0
+19:18:54.802 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (0.9602142310635042, 0.9791376912378303)
+19:18:54.802 [JavaFX Application Thread] DEBUG MainWindow           - Scene size: 1255.0 x 704.0
+19:18:54.802 [JavaFX Application Thread] DEBUG MainWindow           - Stage size: 1255.0 x 726.0
+19:18:54.802 [JavaFX Application Thread] DEBUG GameApplication      - Running preInit()
+19:18:54.808 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - P
+19:18:54.809 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Dev Options - CTRL+0
+19:18:54.810 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+19:18:54.810 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+19:18:54.813 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Hit - LMB
+19:18:54.884 [JavaFX Application Thread] DEBUG GameApplication      - Starting main loop
+19:18:54.976 [JavaFX Application Thread] DEBUG StartupState         - STARTUP
+19:18:54.976 [JavaFX Application Thread] DEBUG GameApplication      - Starting new game
+19:18:54.976 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+19:18:54.993 [JavaFX Application Thread] DEBUG AppStateMachine      - StartupState -> LoadingState
+19:18:55.008 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Clearing previous game
+19:18:55.008 [FXGL Background Thread 1 ] DEBUG GameWorld            - Clearing game world
+19:18:55.008 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Clearing physics world
+19:18:55.008 [FXGL Background Thread 1 ] DEBUG GameScene            - Clearing game scene
+19:18:55.010 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Game
+19:18:55.095 [FXGL Background Thread 1 ] DEBUG GameScene            - Creating render group for layer: DEFAULT(100000)
+19:18:55.163 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/enemyOneSheet.png
+19:18:55.216 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.245 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.255 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.259 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.263 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.274 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.280 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.283 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.285 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/enemyOneSheet.png
+19:18:55.285 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Physics
+19:18:55.287 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing UI
+19:18:55.287 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initialization Complete
+19:18:55.287 [FXGL Background Thread 1 ] INFO  InitAppTask          - Game initialization took: 0.279 sec
+19:18:55.413 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+19:18:55.432 [JavaFX Application Thread] DEBUG AppStateMachine      - LoadingState -> PlayState
+19:18:56.211 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/textures/laserBullet.png
+19:18:56.816 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:18:57.601 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:18:58.176 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:18:58.929 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:18:59.621 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:00.379 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:01.118 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:01.693 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:02.147 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:02.680 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:03.183 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:03.478 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:03.677 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:04.358 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from cache: /assets/textures/laserBullet.png
+19:19:05.976 [JavaFX Application Thread] DEBUG GameApplication      - Exiting game application
+19:19:05.977 [JavaFX Application Thread] DEBUG GameApplication      - Shutting down background threads
+19:19:05.978 [JavaFX Application Thread] DEBUG GameApplication      - Exiting FXGL
+19:19:05.978 [JavaFX Application Thread] DEBUG FXGL                 - Saving FXGL system data
+19:19:05.981 [JavaFX Application Thread] DEBUG DesktopFSService     - Writing to: system/fxgl.bundle
+19:19:05.986 [JavaFX Application Thread] DEBUG GameApplication      - Closing logger and exiting JavaFX

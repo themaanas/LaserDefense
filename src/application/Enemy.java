@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import java.util.Map;
 
 public class Enemy extends Entity {
-	private int num;
+	private int num = 0;
 	
 	public Enemy() {
 		super();
