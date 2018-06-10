@@ -1,5 +1,5 @@
 package application;
 
 public enum EntityType {
-	LASER, ENEMY
+	LASER, ENEMY, DEFENSE
 }

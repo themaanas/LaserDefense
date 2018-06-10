@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
@@ -13,14 +14,14 @@ import javafx.util.Duration;
 public class EnemyControl extends Component{
 	private AnimatedTexture texture;
     private AnimationChannel animIdle, animWalk;
-    
+    private List<Entity> enemyList;
     //pixels p millisecond
     private int speed;
     
     
-    public EnemyControl(int speed) {
+    public EnemyControl(int speed, List<Entity> enemyList) {
         animWalk = new AnimationChannel("enemyOneSheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5);
-		
+		this.enemyList = enemyList;
         texture = new AnimatedTexture(animWalk);
         texture.loopAnimationChannel(animWalk);
         this.speed = speed;
@@ -45,6 +46,7 @@ public class EnemyControl extends Component{
 			newEnemy.increment();
 			if (newEnemy.getNum() == Path.size()) {
 				entity.removeFromWorld();
+				enemyList.remove(entity);
 				return;
 			}
 			

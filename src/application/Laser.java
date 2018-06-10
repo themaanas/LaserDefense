@@ -13,13 +13,12 @@ public class Laser extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 	public static void lasah(List<Entity> enemyList, GameWorld world, Point2D start) {
-		Entity enemyOne = new Enemy();
+		Entity enemyOne = new Entity();
 		enemyOne.setType(EntityType.LASER);
 		enemyOne.setX(start.getX());
 		enemyOne.setY(start.getY());
-		enemyOne.setViewFromTextureWithBBox("laserBullet.png");
+		enemyOne.setViewFromTextureWithBBox("laserBullet_48.png");
 		if (enemyList.size() > 0) {
-			System.out.println("laser");
 			Entity closest = enemyList.get(0);
 			for (Entity i:enemyList) {
 				if (start.distance(i.getPosition()) < start.distance(closest.getPosition())) {

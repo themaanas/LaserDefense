@@ -10,10 +10,13 @@ import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.view.EntityView;
+import com.almasb.fxgl.extra.entity.components.ExpireCleanComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
 import com.almasb.fxgl.time.TimerAction;
 
 import javafx.application.Application;
@@ -37,7 +40,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import static com.almasb.fxgl.app.DSLKt.texture;
 
 public class Main extends GameApplication {
 	private List<Entity> enemyList;
@@ -57,8 +60,9 @@ public class Main extends GameApplication {
 
 	    @Override
 	    protected void onActionEnd() {
+	    	Defense.defense(enemyList, getGameWorld(), getInput().getMousePositionWorld());
 	        // action finished (key is released), play hitting animation based on swing power
-	    	Laser.lasah(enemyList, getGameWorld(), getInput().getMousePositionWorld());
+	    	
 	    }
 	};
 	@Override
@@ -80,7 +84,7 @@ public class Main extends GameApplication {
 		
 		//Spawn enemies
 		enemyList = new ArrayList<Entity>();
-		EnemyFactory.spawn(0, world, enemyList, 10, 50, 4, 0);
+		EnemyFactory.spawn(0, world, enemyList, 50, 50, 3, 0);
 	}
 
 	@Override
@@ -98,8 +102,12 @@ public class Main extends GameApplication {
 
 	        // order of types is the same as passed into the constructor
 	        protected void onCollisionBegin(Entity enemy, Entity laser) {
-//	        	 getGameScene().getViewport().shake(8);
+//	        	 getGameScene().getViewport().shake(2);
 	            laser.removeFromWorld();
+	            Entities.builder()
+	                .at(enemy.getX()-10, enemy.getY()-10)
+	                .viewFromAnimatedTexture("explosion_blue.png", 48, Duration.seconds(0.2), false, true)
+	                .buildAndAttach();
 	            enemy.removeFromWorld();
 	            enemyList.remove(enemy);
 	        }

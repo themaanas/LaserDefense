@@ -33,7 +33,7 @@ public class EnemyFactory {
 				enemyOne.setType(EntityType.ENEMY);
 				enemyOne.setX((-i*distanceBetween - 25)-delay);
 				enemyOne.setY(309);
-				enemyOne.addComponent(new EnemyControl(speed));
+				enemyOne.addComponent(new EnemyControl(speed, enemyList));
 				enemyOne.addComponent(new CollidableComponent(true));
 				enemyList.add(enemyOne);
 				world.addEntity(enemyOne);
