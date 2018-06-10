@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.view.EntityView;
 import com.almasb.fxgl.extra.entity.components.ExpireCleanComponent;
+import com.almasb.fxgl.extra.entity.components.HealthComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
@@ -48,6 +50,7 @@ public class Main extends GameApplication {
 	UserAction hitBall = new UserAction("Hit") {
 	    @Override
 	    protected void onActionBegin() {
+	    	System.out.println(getInput().getMousePositionWorld());
 	        // action just started (key has just been pressed), play swinging animation
 	    	
 	    }
@@ -60,7 +63,7 @@ public class Main extends GameApplication {
 
 	    @Override
 	    protected void onActionEnd() {
-	    	Defense.defense(enemyList, getGameWorld(), getInput().getMousePositionWorld());
+	    	Defense.defense(enemyList, getGameWorld(), getInput().getMousePositionWorld(), getAudioPlayer());
 	        // action finished (key is released), play hitting animation based on swing power
 	    	
 	    }
@@ -74,16 +77,20 @@ public class Main extends GameApplication {
 	//Executes at the start of the game
 	protected void initGame() {
 		GameWorld world = getGameWorld();
-		
+		String message = "Blue enemies only need one hit to die.";
+    	FXGL.getNotificationService().pushNotification(message);
 		//Set the background
 		Image image1 = new Image("/636460990.jpg", true);
 		ImageView iv1 = new ImageView();
         iv1.setImage(image1);
         EntityView newView = new EntityView(iv1);
 		getGameScene().addGameView(newView);
-		
+		Rectangle rect = new Rectangle(153,86,60,188);
+		rect.setFill(Color.BLUE);
+//		getGameScene().addGameView(new EntityView(rect));
 		//Spawn enemies
 		enemyList = new ArrayList<Entity>();
+//		Bounds.isInBounds(0, 0, getGameScene());
 		EnemyFactory.spawn(0, world, enemyList, 50, 50, 3, 0);
 	}
 
@@ -104,13 +111,18 @@ public class Main extends GameApplication {
 	        protected void onCollisionBegin(Entity enemy, Entity laser) {
 //	        	 getGameScene().getViewport().shake(2);
 	            laser.removeFromWorld();
-	            Entities.builder()
+	            if (enemy.getComponent(EnemyControl.class).minusHealth() == 0) {
+	            	enemy.removeFromWorld();
+	            	enemyList.remove(enemy);
+	            	Entities.builder()
 	                .at(enemy.getX()-10, enemy.getY()-10)
 	                .viewFromAnimatedTexture("explosion_blue.png", 48, Duration.seconds(0.2), false, true)
 	                .buildAndAttach();
-	            enemy.removeFromWorld();
-	            enemyList.remove(enemy);
+	            }
+	            
+	            
 	        }
 	    });
 	}
+	
 }

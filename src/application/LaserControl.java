@@ -11,15 +11,15 @@ public class LaserControl extends Component {
 	private Point2D target;
 	private List<Entity> enemyList;
 	private boolean isPositive;
+	
 	public LaserControl(Point2D target, List<Entity> enemyList) {
 		this.target = target;
 		this.enemyList = enemyList;
-		// TODO Auto-generated constructor stub
 	}
+	
 	@Override
     public void onAdded() {
 		isPositive = entity.getPosition().subtract(target).getX() < 0;
-//		entity.setRotation(360-entity.getCenter().angle(target, new Point2D(999999, entity.getY())));
 		if (entity.getCenter().getY() < target.getY()) {
 			entity.setRotation(entity.getCenter().angle(target, new Point2D(999999, entity.getY())));
 		} else {

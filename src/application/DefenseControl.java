@@ -2,6 +2,7 @@ package application;
 
 import java.util.List;
 
+import com.almasb.fxgl.audio.AudioPlayer;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
@@ -17,18 +18,20 @@ public class DefenseControl extends Component {
 	private List<Entity> enemyList;
 	private GameWorld gameWorld;
 	private int tick;
+	private AudioPlayer player;
 	
-	public DefenseControl(List<Entity> enemyList, GameWorld world) {
+	public DefenseControl(List<Entity> enemyList, GameWorld world, AudioPlayer audio) {
 		this.enemyList = enemyList;
 		gameWorld = world;
+		player = audio;
 		// TODO Auto-generated constructor stub
 	}
 	@Override
     public void onAdded() {
-		Entities.builder()
-        .at(entity.getCenter().getX()-100, entity.getCenter().getY()-100)
-        .viewFromNode(new Circle(100, new Color(0,0,1,0.5)))
-        .buildAndAttach(gameWorld);
+//		Entities.builder()
+//        .at(entity.getCenter().getX()-100, entity.getCenter().getY()-100)
+//        .viewFromNode(new Circle(100, new Color(0,0,1,0.5)))
+//        .buildAndAttach(gameWorld);
     }
 	private Entity getClosest() {
 		if (enemyList.size() > 0) {
@@ -55,6 +58,7 @@ public class DefenseControl extends Component {
     			entity.setRotation(270-entity.getCenter().angle(closest.getCenter(), new Point2D(999999, entity.getY())));
     		}
     		Laser.lasah(enemyList, gameWorld, entity.getCenter());
+//    		player.playSound("single.wav");
     		tick = 0;
     	} else {
     		tick++;

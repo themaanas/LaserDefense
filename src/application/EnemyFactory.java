@@ -13,6 +13,7 @@ import java.util.List;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.view.EntityView;
+import com.almasb.fxgl.extra.entity.components.HealthComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
@@ -35,6 +36,7 @@ public class EnemyFactory {
 				enemyOne.setY(309);
 				enemyOne.addComponent(new EnemyControl(speed, enemyList));
 				enemyOne.addComponent(new CollidableComponent(true));
+				enemyOne.addComponent(new HealthComponent(2));
 				enemyList.add(enemyOne);
 				world.addEntity(enemyOne);
 			}
