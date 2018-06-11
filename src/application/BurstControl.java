@@ -3,28 +3,28 @@ package application;
 import java.util.List;
 
 import com.almasb.fxgl.audio.AudioPlayer;
-import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.time.*;
-import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
-public class DefenseControl extends Component {
+import javafx.geometry.Point2D;
+
+public class BurstControl extends Component {
+
 	private List<Entity> enemyList;
 	private GameWorld gameWorld;
-	private int tick;
 	private AudioPlayer player;
 	
-	public DefenseControl(List<Entity> enemyList, GameWorld world, AudioPlayer audio) {
+	private int tickCounter;
+	
+	private int FIRE_COUNT = 0;
+	private final int FIRE_COOLDOWN = 60;
+	private final int RANGE = 200;
+	
+	public BurstControl(List<Entity> enemyList, GameWorld world, AudioPlayer audio) {
 		this.enemyList = enemyList;
 		gameWorld = world;
 		player = audio;
-		// TODO Auto-generated constructor stub
 	}
 	@Override
     public void onAdded() {
@@ -41,7 +41,7 @@ public class DefenseControl extends Component {
 					closest = i;
 				}
 			}
-			if (closest.getCenter().distance(entity.getCenter()) < 100) {
+			if (closest.getCenter().distance(entity.getCenter()) < RANGE) {
 				return closest;
 			}
 		}
@@ -51,23 +51,27 @@ public class DefenseControl extends Component {
     @Override
     public void onUpdate(double tpf) {
     	Entity closest = getClosest();
-    	if (tick >= 60 && closest != null) {
+    	if (tickCounter >= FIRE_COOLDOWN && closest != null) {
     		if (entity.getCenter().getY() < closest.getCenter().getY()) {
     			entity.setRotation(entity.getCenter().angle(closest.getCenter(), new Point2D(999999, entity.getY()))-90);
     		} else {
     			entity.setRotation(270-entity.getCenter().angle(closest.getCenter(), new Point2D(999999, entity.getY())));
     		}
-    		Laser.lasah(enemyList, gameWorld, entity.getCenter());
+    		if (FIRE_COUNT == 0)
+    			player.playSound("burst.wav");
+    		if (tickCounter <= FIRE_COOLDOWN + 8 && FIRE_COUNT < 3) {
+    			Laser.lasah(enemyList, gameWorld, entity.getCenter());
+    			FIRE_COUNT++;
+    			tickCounter -= 8;
+    		} else {
+    			FIRE_COUNT = 0;
+    			tickCounter = 0;
+    		}
 //    		player.playSound("single.wav");
-    		tick = 0;
+//    		tickCounter = 0;
     	} else {
-    		tick++;
+    		tickCounter++;
     	}
-    	
-//    	if ((entity.getPosition().subtract(target).getX() < 0 && !isPositive) || (entity.getPosition().subtract(target).getX() > 0 && isPositive)) {
-//    		entity.removeFromWorld();
-//    		enemyList.remove(entity);
-//    	}
-//    	entity.translateTowards(target, 10);
     }
+
 }

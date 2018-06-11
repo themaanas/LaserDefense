@@ -47,25 +47,35 @@ import static com.almasb.fxgl.app.DSLKt.texture;
 public class Main extends GameApplication {
 	private List<Entity> enemyList;
 	private TimerAction timerAction;	
+	private boolean mode = false;
 	UserAction hitBall = new UserAction("Hit") {
 	    @Override
-	    protected void onActionBegin() {
-	    	System.out.println(getInput().getMousePositionWorld());
-	        // action just started (key has just been pressed), play swinging animation
+	    protected void onActionEnd() {
+	    	if (!mode) {
+	    		DefenseFactory.makeBurst(enemyList, getGameWorld(), getInput().getMousePositionWorld(), getAudioPlayer(), getGameScene());
+	    	} else {
+	    		DefenseFactory.makePulse(enemyList, getGameWorld(), getInput().getMousePositionWorld(), getAudioPlayer(), getGameScene());
+	    	}
 	    	
+	        // action finished (key is released), play hitting animation based on swing power
+	    	
+	    }
+	};
+	UserAction keyPress = new UserAction("ChangeMode") {
+	    @Override
+	    protected void onActionBegin() {
+	        // action just started (key has just been pressed), play swinging animation
 	    }
 
 	    @Override
 	    protected void onAction() {
 	        // action continues (key is held), increase swing power
-	    	
 	    }
 
 	    @Override
 	    protected void onActionEnd() {
-	    	Defense.defense(enemyList, getGameWorld(), getInput().getMousePositionWorld(), getAudioPlayer());
+	    	mode = !mode;
 	        // action finished (key is released), play hitting animation based on swing power
-	    	
 	    }
 	};
 	@Override
@@ -73,6 +83,7 @@ public class Main extends GameApplication {
 	    Input input = getInput();
 
 	    input.addAction(hitBall, MouseButton.PRIMARY);
+	    input.addAction(keyPress, KeyCode.Q);
 	}
 	//Executes at the start of the game
 	protected void initGame() {
