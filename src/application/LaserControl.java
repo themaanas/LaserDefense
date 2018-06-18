@@ -3,6 +3,7 @@ package application;
 import java.util.List;
 
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
 
 import javafx.geometry.Point2D;
@@ -12,9 +13,8 @@ public class LaserControl extends Component {
 	private List<Entity> enemyList;
 	private boolean isPositive;
 	
-	public LaserControl(Point2D target, List<Entity> enemyList) {
+	public LaserControl(Point2D target) {
 		this.target = target;
-		this.enemyList = enemyList;
 	}
 	
 	@Override
@@ -31,7 +31,6 @@ public class LaserControl extends Component {
     public void onUpdate(double tpf) {
     	if ((entity.getPosition().subtract(target).getX() < 0 && !isPositive) || (entity.getPosition().subtract(target).getX() > 0 && isPositive)) {
     		entity.removeFromWorld();
-    		enemyList.remove(entity);
     	}
     	entity.translateTowards(target, 10);
     }

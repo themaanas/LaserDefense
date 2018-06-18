@@ -22,7 +22,6 @@ public final class Bounds {
 			new Rectangle(699,250,285,65),
 			new Rectangle(1019,0,288,719)
 			);
-	
 	public static boolean isInBounds(double x, double y) {
 		for (Rectangle i:bounds) {
 			if (i.contains(new Point2D(x,y)))

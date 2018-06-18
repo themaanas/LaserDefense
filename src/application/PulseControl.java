@@ -22,12 +22,11 @@ public class PulseControl extends Component {
 	private int tickCounter;
 	
 	private final int FIRE_COOLDOWN = 60;
-	private final int RANGE = 100;
+	private final int RANGE = 200;
 	
-	public PulseControl(List<Entity> enemyList, GameWorld world, AudioPlayer audio) {
+	public PulseControl(List<Entity> enemyList, GameWorld world) {
 		this.enemyList = enemyList;
 		gameWorld = world;
-		player = audio;
 	}
 	@Override
     public void onAdded() {
@@ -60,7 +59,7 @@ public class PulseControl extends Component {
     		} else {
     			entity.setRotation(270-entity.getCenter().angle(closest.getCenter(), new Point2D(999999, entity.getY())));
     		}
-    		Laser.lasah(enemyList, gameWorld, entity.getCenter());
+    		Laser.lasah(gameWorld, entity.getCenter());
 //    		player.playSound("single.wav");
     		tickCounter = 0;
     	} else {

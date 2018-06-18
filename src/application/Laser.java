@@ -12,12 +12,13 @@ public class Laser extends Entity {
 	public Laser() {
 		// TODO Auto-generated constructor stub
 	}
-	public static void lasah(List<Entity> enemyList, GameWorld world, Point2D start) {
+	public static void lasah( GameWorld world, Point2D start) {
 		Entity enemyOne = new Entity();
 		enemyOne.setType(EntityType.LASER);
 		enemyOne.setX(start.getX());
 		enemyOne.setY(start.getY());
 		enemyOne.setViewFromTextureWithBBox("laserBullet_48.png");
+		List <Entity> enemyList = world.getEntitiesByType(EntityType.ENEMY);
 		if (enemyList.size() > 0) {
 			Entity closest = enemyList.get(0);
 			for (Entity i:enemyList) {
@@ -25,7 +26,7 @@ public class Laser extends Entity {
 					closest = i;
 				}
 			}
-			enemyOne.addComponent(new LaserControl(closest.getCenter(), enemyList));
+			enemyOne.addComponent(new LaserControl(closest.getCenter()));
 			enemyOne.addComponent(new CollidableComponent(true));
 			world.addEntity(enemyOne);
 		}
