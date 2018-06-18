@@ -67,9 +67,9 @@ public class LaserDefense extends GameApplication {
 		{new Wave(1,102,50,0)},
 		{new Wave(1,10,50,0), new Wave(2,10,50,100), new Wave(3,12,50,200), new Wave(4,2,50,300)},
 		{new Wave(2,5,50,0), new Wave(2,10,50,100), new Wave(3,5,50,200)},
-		{new Wave(1,100,50,0), new Wave(3,23,50,100), new Wave(4,4,50,200)},
+		{new Wave(1,50,50,0), new Wave(3,23,50,100), new Wave(4,6,50,200)},
 		{new Wave(1,50,50,0), new Wave(2,15,50,100), new Wave(3,10,50,200), new Wave(4,9,50,300)},
-		{new Wave(1,100,50,0), new Wave(2,35,50,100), new Wave(3,25,50,200), new Wave(4,20,50,300)}
+		{new Wave(1,100,50,0), new Wave(2,35,50,100), new Wave(3,25,50,200), new Wave(4,25,50,300)}
 	};
 	
 	//listens for changes to update the lives label
@@ -94,6 +94,7 @@ public class LaserDefense extends GameApplication {
 	    protected void onActionEnd() {
 	    	if (menuIsVisible) {
 	    		hideDefenseMenu();
+	    		defenseToUpgrade.getComponent(DefenseControl.class).setSelectedTexture(false);
 	    	}
 	    	if (placeDefenseMode) {
 	    		defenses.spawn(getInput().getMousePositionWorld());
@@ -241,7 +242,6 @@ public class LaserDefense extends GameApplication {
 	}
 	
 	public static void enableButton() {
-		System.out.println(waveNum);
 		addMoney(100 + waveNum-1);
 		if (waveNum == waveArr.length) {
 			win();
@@ -304,7 +304,6 @@ public class LaserDefense extends GameApplication {
 	//checks if point is near another defense, in this case 60 pixels
 	public static boolean isNotNearDefense(Point2D start) {
 		for (Entity newEntity: world.getEntitiesByType(EntityType.DEFENSE)) {
-			System.out.println(start.distance(newEntity.getCenter()));
 			if (start.distance(newEntity.getCenter()) < 60) {
 				return false;
 			}

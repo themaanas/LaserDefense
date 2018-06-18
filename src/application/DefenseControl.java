@@ -57,8 +57,8 @@ public class DefenseControl extends Component {
 	public void showRadius(Boolean show) {
 		if (show) {
 			circleRadius = Entities.builder()
-			        .at(entity.getCenter().getX()-200, entity.getCenter().getY()-200)
-			        .viewFromNode(new Circle(200, new Color(1,1,1,0.1))).buildAndAttach(world);
+			        .at(entity.getCenter().getX()-RANGE, entity.getCenter().getY()-RANGE)
+			        .viewFromNode(new Circle(RANGE, new Color(1,1,1,0.1))).buildAndAttach(world);
 		} else {
 			circleRadius.removeFromWorld();
 		}
@@ -66,7 +66,7 @@ public class DefenseControl extends Component {
 	
 	//changes the sprite to the selected sprite
 	public void setSelectedTexture(Boolean selected) {
-		entity.setViewFromTexture(selected ? "defense.png" : "defenseSelected.png");
+		entity.setViewFromTexture(selected ? "defenseSelected.png" : "defense.png");
 	}
 	
 	//returns the closest enemy within range of the defense
