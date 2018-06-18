@@ -1,12 +1,7 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.entity.components.ViewComponent;
 import com.almasb.fxgl.gameplay.GameState;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
@@ -16,8 +11,7 @@ import javafx.util.Duration;
 
 public class EnemyControl extends Component{
 	private AnimatedTexture texture;
-    private AnimationChannel animIdle, animWalk;
-    private List<Entity> enemyList;
+    private AnimationChannel anim;
     private GameState state;
     private int pathNum;
     private GameWorld world;
@@ -27,10 +21,12 @@ public class EnemyControl extends Component{
     private int reward;
     
     public EnemyControl(int health, GameState state, GameWorld world) {
-        animWalk = new AnimationChannel("enemy"+health+"Sheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5);
-		this.enemyList = world.getEntitiesByType(EntityType.ENEMY);
-        texture = new AnimatedTexture(animWalk);
-        texture.loopAnimationChannel(animWalk);
+    	//Code for animating sprites
+        anim = new AnimationChannel("enemy"+health+"Sheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5);
+		world.getEntitiesByType(EntityType.ENEMY);
+        texture = new AnimatedTexture(anim);
+        texture.loopAnimationChannel(anim);
+        
         this.speed = health;
         this.state = state;
         this.health = health;
@@ -47,12 +43,12 @@ public class EnemyControl extends Component{
         entity.setViewWithBBox(texture);
         
     }
-
+    //subtracts 1 from health and changes sprite animation to match.
     public int minusHealth() {
     	health--;
     	speed = health;
     	if (health > 0) {
-    		texture = new AnimatedTexture(new AnimationChannel("enemy"+health+"Sheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5));
+//    		texture = new AnimatedTexture(new AnimationChannel("enemy"+health+"Sheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5));
     		texture.loopAnimationChannel(new AnimationChannel("enemy"+health+"Sheet.png", 6, 46, 46, Duration.seconds(0.6), 0, 5));
     		entity.setViewWithBBox(texture);
     	}
@@ -73,10 +69,10 @@ public class EnemyControl extends Component{
 				entity.removeFromWorld();
 				state.setValue("lives", state.getInt("lives")-health);
 				if (state.getInt("lives") <= 0) {
-					LaserGame.loseModal();
+					LaserDefense.lose();
 				}
 				if(world.getEntitiesByType(EntityType.ENEMY).size() == 0)
-					LaserGame.enableButton();
+					LaserDefense.enableButton();
 				return;
 			}
 			

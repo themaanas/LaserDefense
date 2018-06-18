@@ -3,15 +3,12 @@ package application;
 import java.util.Arrays;
 import java.util.List;
 
-import com.almasb.fxgl.entity.GameWorld;
-import com.almasb.fxgl.entity.view.EntityView;
-import com.almasb.fxgl.scene.GameScene;
-
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public final class Bounds {
+	
+	//Rectangles for the pathway and the menu
 	private static List<Rectangle> bounds = Arrays.asList(
 			new Rectangle(-30,250,250,65),
 			new Rectangle(153,86,65,188),
@@ -22,6 +19,8 @@ public final class Bounds {
 			new Rectangle(699,250,285,65),
 			new Rectangle(1019,0,288,719)
 			);
+	
+	//Checks if the point is within any of the rectangles
 	public static boolean isInBounds(double x, double y) {
 		for (Rectangle i:bounds) {
 			if (i.contains(new Point2D(x,y)))

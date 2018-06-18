@@ -1,16 +1,11 @@
 package application;
 
-import java.util.List;
-
-import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
 
 import javafx.geometry.Point2D;
 
 public class LaserControl extends Component {
 	private Point2D target;
-	private List<Entity> enemyList;
 	private boolean isPositive;
 	
 	public LaserControl(Point2D target) {
